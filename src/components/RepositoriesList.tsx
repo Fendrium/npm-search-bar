@@ -16,16 +16,28 @@ const RepositoriesList: React.FC = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={onSubmit}>
-        <input value={term} onChange={(e) => setTerm(e.target.value)} />
-        <button>Search</button>
+    <div className="ui center" style={{ padding: 10 }}>
+      <form className="ui form" onSubmit={onSubmit}>
+        <div className="ui action center input">
+          <input
+            className="field"
+            value={term}
+            onChange={(e) => setTerm(e.target.value)}
+          />
+          <button className="ui button primary right">Search</button>
+        </div>
       </form>
       {error && <h3>{error}</h3>}
       {loading && <h3>Loading...</h3>}
-      <ul>
-        {!error && !loading && data.map((name) => <li key={name}>{name}</li>)}
-      </ul>
+      <div className="ui relaxed divided list">
+        {!error &&
+          !loading &&
+          data.map((name) => (
+            <div className="item" style={{ padding: 10 }} key={name}>
+              {name}
+            </div>
+          ))}
+      </div>
     </div>
   );
 };
